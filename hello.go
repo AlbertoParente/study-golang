@@ -1,21 +1,41 @@
 package main
 
-import "fmt"
-import "reflect"
+import (
+	"fmt"
+	"reflect"
+)
 
 func main() {
-	var name string = "Alberto Parente"
-	var age int = 29
-	var version float32 = 1.0
+	name := "Alberto Parente"
+	age := 29
+	version := 1.0
 	fmt.Println("Hello world, my name is", name)
 	fmt.Println("My age is,", age)
 	fmt.Println("This version is,", version)
 
-	var name2 = "Alberto Parente"
-	var age2 = 29
-	var version2 float32 = 1.0
+	name2 := "Alberto Parente"
+	age2 := 29
+	version2 := 1.0
 	fmt.Println("Hello world, my name is", name2, "my age is", age2)
 	fmt.Println("This version is,", version2)
-
 	fmt.Println("The type of variable name is:", reflect.TypeOf((name2)))
+
+	fmt.Println("1- Starting monitoring")
+	fmt.Println("2- Show logs")
+	fmt.Println("0- Exit the program")
+
+	var command int
+	fmt.Scan(&command)
+	fmt.Println("The memory address is:", &command)
+	fmt.Println("The command chosen was:", command)
+
+	if command == 1 {
+		fmt.Println("Monitoring...")
+	} else if command == 2 {
+		fmt.Println("Viewing logs...")
+	} else if command == 0 {
+		fmt.Println("Leaving the program...")
+	} else {
+		fmt.Println("Invalid command...!")
+	}
 }
