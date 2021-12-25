@@ -28,7 +28,8 @@ func main() {
 	fmt.Scan(&command)
 	fmt.Println("The memory address is:", &command)
 	fmt.Println("The command chosen was:", command)
-
+	
+	/*
 	if command == 1 {
 		fmt.Println("Monitoring...")
 	} else if command == 2 {
@@ -38,4 +39,29 @@ func main() {
 	} else {
 		fmt.Println("Invalid command...!")
 	}
+	*/
+
+	switch command {
+	case 1:
+		fmt.Println("Monitoring...")
+	case 2:
+		fmt.Println("Viewing logs...")
+	case 0:
+		fmt.Println("Leaving the program...")
+	}
+}
+
+func showIntroduction() {
+    name := "Alberto Parente"
+    version := 1.1
+    fmt.Println("Hello, sr.", name)
+    fmt.Println("This program is in version", version)
+}
+
+func readCommand() int {
+    var commandRead int
+    fmt.Scan(&commandRead)
+    fmt.Println("The chosen command was", commandRead)
+
+    return commandRead
 }
