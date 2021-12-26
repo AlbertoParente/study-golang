@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+        "net/http"
 )
 
 func main() {
@@ -25,9 +26,9 @@ func main() {
 
 	switch command {
 	case 1:
-		fmt.Println("Monitoring...")
-	case 2:
-		fmt.Println("Viewing logs...")
+		startingMonitoring()
+	case 2:		
+                fmt.Println("Viewing logs...")
 	case 0:
 		fmt.Println("Leaving the program...")
 		os.Exit(0)
@@ -56,4 +57,10 @@ func readCommand() int {
 	fmt.Println("The chosen command was", commandRead)
 
 	return commandRead
+}
+
+func startingMonitoring() {
+        fmt.Println("Monitoring...")
+        site := "https://www.innovaro.com.br"
+        resp, err := http.Get(site)
 }
