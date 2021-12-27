@@ -2,33 +2,25 @@ package main
 
 import (
 	"fmt"
+	"net/http"
 	"os"
-        "net/http"
 )
 
 func main() {
 
 	showIntroduction()
 	showMenu()
-	command := readCommand()
 
-	/*
-		if command == 1 {
-			fmt.Println("Monitoring...")
-		} else if command == 2 {
-			fmt.Println("Viewing logs...")
-		} else if command == 0 {
-			fmt.Println("Leaving the program...")
-		} else {
-			fmt.Println("Invalid command...!")
-		}
-	*/
+	name, age := getDados()
+	fmt.Println(name, age)
+
+	command := readCommand()
 
 	switch command {
 	case 1:
 		startingMonitoring()
-	case 2:		
-                fmt.Println("Viewing logs...")
+	case 2:
+		fmt.Println("Viewing logs...")
 	case 0:
 		fmt.Println("Leaving the program...")
 		os.Exit(0)
@@ -36,6 +28,12 @@ func main() {
 		fmt.Println("Invalid command...!")
 		os.Exit(-1)
 	}
+}
+
+func getDados() (string, int) {
+	name := "Alberto Parente"
+	age := 24
+	return name, age
 }
 
 func showIntroduction() {
@@ -60,7 +58,8 @@ func readCommand() int {
 }
 
 func startingMonitoring() {
-        fmt.Println("Monitoring...")
-        site := "https://www.innovaro.com.br"
-        resp, err := http.Get(site)
+	fmt.Println("Monitoring...")
+	site := "https://www.innovaro.com.br"
+	resp, _ := http.Get(site)
+	fmt.Println(resp)
 }
