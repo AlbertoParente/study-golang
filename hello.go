@@ -7,33 +7,28 @@ import (
 )
 
 func main() {
-
+	
 	showIntroduction()
-	showMenu()
 
-	name, age := getDados()
-	fmt.Println(name, age)
+	for {
+		showMenu()
 
-	command := readCommand()
+		command := readCommand()
 
-	switch command {
-	case 1:
-		startingMonitoring()
-	case 2:
-		fmt.Println("Viewing logs...")
-	case 0:
-		fmt.Println("Leaving the program...")
-		os.Exit(0)
-	default:
-		fmt.Println("Invalid command...!")
-		os.Exit(-1)
+		switch command {
+		case 1:
+			startingMonitoring()
+		case 2:
+			fmt.Println("Viewing logs...")
+		case 0:
+			fmt.Println("Leaving the program...")
+			os.Exit(0)
+		default:
+			fmt.Println("Invalid command...!")
+			os.Exit(-1)
+		}
 	}
-}
 
-func getDados() (string, int) {
-	name := "Alberto Parente"
-	age := 24
-	return name, age
 }
 
 func showIntroduction() {
@@ -61,5 +56,10 @@ func startingMonitoring() {
 	fmt.Println("Monitoring...")
 	site := "https://www.innovaro.com.br"
 	resp, _ := http.Get(site)
-	fmt.Println(resp)
+
+	if resp.StatusCode == 200 {
+		fmt.Println("The Site:", site, "was successfully loaded!")
+	} else {
+		fmt.Println("The Site:", site, "did not load successfully! Status code:", resp.StatusCode)
+	}
 }
