@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	
+
 	showIntroduction()
 
 	for {
@@ -54,12 +54,25 @@ func readCommand() int {
 
 func startingMonitoring() {
 	fmt.Println("Monitoring...")
-	site := "https://www.innovaro.com.br"
-	resp, _ := http.Get(site)
-
-	if resp.StatusCode == 200 {
-		fmt.Println("The Site:", site, "was successfully loaded!")
-	} else {
-		fmt.Println("The Site:", site, "did not load successfully! Status code:", resp.StatusCode)
+	sites := []string{
+		"https://www.innovaro.com.br",
+		"http://sync.innovaro.com.br/sync/",
+		"http://licenca.innovaro.com.br/allylicenca/",
+		"http://app.allysistemas.com.br/sync/",
 	}
+
+	for i, site := range sites {
+		fmt.Println(i, site)
+	}
+}
+
+func siteTests(site string) {
+
+    resp, _ := http.Get(site)
+
+    if resp.StatusCode == 200 {
+        fmt.Println("The Site:", site, "was successfully loaded!")
+    } else {
+        fmt.Println("The Site:", site, "did not load successfully! Status code:", resp.StatusCode)
+    }
 }
