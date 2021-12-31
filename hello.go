@@ -59,10 +59,8 @@ func readCommand() int {
 
 func startingMonitoring() {
 	fmt.Println("Monitoring...")
-	sites := []string{
-		"https://www.innovaro.com.br",
-		"http://sync.innovaro.com.br/sync/",
-		"http://licenca.innovaro.com.br/allylicenca/"}
+
+	sites := getSitesFile()
 
 	for i := 0; i < numberOfMonitoring; i++ {
 		for i, site := range sites {
@@ -77,11 +75,28 @@ func startingMonitoring() {
 
 func siteTests(site string) {
 
-	resp, _ := http.Get(site)
+	resp, err := http.Get(site)
+
+	if err != nil {
+		fmt.Println("An error has occurred:", err)
+	}
 
 	if resp.StatusCode == 200 {
 		fmt.Println("The Site:", site, "was successfully loaded!")
 	} else {
 		fmt.Println("The Site:", site, "did not load successfully! Status code:", resp.StatusCode)
 	}
+}
+
+func getSitesFile() []string {
+	var sites []string
+
+	file, err := os.Open("sites.txt")
+
+	if err != nil {
+		fmt.Println("An error has occurred:", err)
+	}
+
+	fmt.Println(file)
+	return sites
 }
