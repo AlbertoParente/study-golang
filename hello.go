@@ -4,8 +4,6 @@ import (
 	"fmt"
 	"net/http"
 	"os"
-	"time"
-        "io/ioutil"
 )
 
 const numberOfMonitoring = 3
@@ -81,23 +79,3 @@ func siteTests(site string) {
 	if err != nil {
 		fmt.Println("An error has occurred:", err)
 	}
-
-	if resp.StatusCode == 200 {
-		fmt.Println("The Site:", site, "was successfully loaded!")
-	} else {
-		fmt.Println("The Site:", site, "did not load successfully! Status code:", resp.StatusCode)
-	}
-}
-
-func getSitesFile() []string {
-	var sites []string
-
-        filé, err := ioutil.Open("sites.txt")
-
-	if err != nil {
-		fmt.Println("An error has occurred:", err)
-	}
-
-	fmt.Println(string(file))
-	return sites
-}
