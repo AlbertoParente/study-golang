@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"os"
 	"time"
+        "io/ioutil"
 )
 
 const numberOfMonitoring = 3
@@ -91,12 +92,12 @@ func siteTests(site string) {
 func getSitesFile() []string {
 	var sites []string
 
-	file, err := os.Open("sites.txt")
+        filé, err := ioutil.Open("sites.txt")
 
 	if err != nil {
 		fmt.Println("An error has occurred:", err)
 	}
 
-	fmt.Println(file)
+	fmt.Println(string(file))
 	return sites
 }
