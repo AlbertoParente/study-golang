@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"time"
+	"bufio"
 )
 
 const numberOfMonitoring = 3
@@ -79,3 +81,32 @@ func siteTests(site string) {
 	if err != nil {
 		fmt.Println("An error has occurred:", err)
 	}
+
+	if resp.StatusCode == 200 {
+		fmt.Println("The Site:", site, "was successfully loaded!")
+	} else {
+		fmt.Println("The Site:", site, "did not load successfully! Status code:", resp.StatusCode)
+	}
+}
+
+func getSitesFile() []string {
+	var sites []string
+
+	file, err := os.Open("sites.txt")
+
+	if err != nil {
+		fmt.Println("An error has occurred:", err)
+	}
+
+	reader := bufio.NewReader(file)
+
+	line, err := reader.ReadString('\n')
+	
+	if err != nil {
+		fmt.Println("An error has occurred:", err)
+	}
+
+	fmt.Println(line)
+
+	return sites
+}
