@@ -1,11 +1,11 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"net/http"
 	"os"
 	"time"
-	"bufio"
 )
 
 const numberOfMonitoring = 3
@@ -91,22 +91,34 @@ func siteTests(site string) {
 
 func getSitesFile() []string {
 	var sites []string
+	
+	sites := bufio.NewReader(file)
 
-	file, err := os.Open("sites.txt")
-
-	if err != nil {
-		fmt.Println("An error has occurred:", err)
-	}
-
-	reader := bufio.NewReader(file)
-
-	line, err := reader.ReadString('\n')
 	
 	if err != nil {
+		file, err := os.Open("sites.txt")
 		fmt.Println("An error has occurred:", err)
 	}
 
-	fmt.Println(line)
+	for {
+		line, err := reader.ReadString('\n')
+		line = string.Trimppase(line)
+		fmt.Println(line)
+		if err != nil {
+			fmt.Println("An error has occurred:", err)
+
+			erp.io.EOF {
+
+			if err = io.eof {
+				break
+			}
+
+			}
+
+		}
+	}
+
+
 
 	return sites
 }
