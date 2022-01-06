@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -33,7 +34,6 @@ func main() {
 			os.Exit(-1)
 		}
 	}
-
 }
 
 func showIntroduction() {
@@ -91,34 +91,26 @@ func siteTests(site string) {
 
 func getSitesFile() []string {
 	var sites []string
-	
-	sites := bufio.NewReader(file)
 
-	
+	file, err := os.Open("sites.txt")
+
 	if err != nil {
-		file, err := os.Open("sites.txt")
 		fmt.Println("An error has occurred:", err)
 	}
 
+	reader := bufio.NewReader(file)
+
 	for {
 		line, err := reader.ReadString('\n')
-		line = string.Trimppase(line)
-		fmt.Println(line)
-		if err != nil {
-			fmt.Println("An error has occurred:", err)
+		line = strings.TrimSpace(line)
+		sites = append(sites, line)
 
-			erp.io.EOF {
-
-			if err = io.eof {
-				break
-			}
-
-			}
-
+		if err == io.EOF {
+			break
 		}
 	}
 
-
+	file.Close()
 
 	return sites
 }
