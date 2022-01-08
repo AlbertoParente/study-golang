@@ -3,8 +3,11 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"io"
+	"io/ioutil"
 	"net/http"
 	"os"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -26,6 +29,7 @@ func main() {
 			startingMonitoring()
 		case 2:
 			fmt.Println("Viewing logs...")
+			printLog()
 		case 0:
 			fmt.Println("Leaving the program...")
 			os.Exit(0)
@@ -117,14 +121,25 @@ func getSitesFile() []string {
 
 func registerLog(site string, status bool) {
 
-    file, err := os.OpenFile("log.txt", os.O_CREATE|os.O_RDWR|os.O_APPEND, 0666)
+	file, err := os.OpenFile("log.txt", os.O_CREATE|os.O_RDWR|os.O_APPEND, 0666)
 
-    if err != nil {
-        fmt.Println("An error has occurred:", err)
-    }
+	if err != nil {
+		fmt.Println("An error has occurred:", err)
+	}
 
-	file.WriteString(time.Now().Format("02/01/2006 15:04:05") + " - " + site + 
-	" - online: " + strconv.FormatBool(status) + "\n")
+	file.WriteString(time.Now().Format("02/01/2006 15:04:05") + " - " + site +
+		" - online: " + strconv.FormatBool(status) + "\n")
 
 	file.Close()
+}
+
+func printLog() {
+
+	file, err := ioutil.ReadFile("log.txt")
+
+	if err != nil {
+		fmt.Println("An error has occurred:", err)
+	}
+
+	fmt.Println(string(file))
 }
