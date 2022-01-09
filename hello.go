@@ -88,8 +88,10 @@ func siteTests(site string) {
 
 	if resp.StatusCode == 200 {
 		fmt.Println("The Site:", site, "was successfully loaded!")
+		registerLog(site, true)
 	} else {
 		fmt.Println("The Site:", site, "did not load successfully! Status code:", resp.StatusCode)
+		registerLog(site, false)
 	}
 }
 
@@ -121,7 +123,7 @@ func getSitesFile() []string {
 
 func registerLog(site string, status bool) {
 
-	file, err := os.OpenFile("log.txt", os.O_CREATE|os.O_RDWR|os.O_APPEND, 0666)
+	file, err := os.OpenFile("log.txt", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 
 	if err != nil {
 		fmt.Println("An error has occurred:", err)
