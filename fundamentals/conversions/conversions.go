@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 func main() {
 	x := 2.4
@@ -12,4 +15,13 @@ func main() {
 	fmt.Println(finalGrade)
 
 	fmt.Println("Test" + string(123))
+	fmt.Println("Test" + strconv.Itoa(123))
+
+	num, _ := strconv.Atoi("123")
+	fmt.Println(num - 122)
+
+	b, _ := strconv.ParseBool("True")
+	if b {
+		fmt.Println("V")
+	}
 }
