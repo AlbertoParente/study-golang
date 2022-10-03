@@ -17,7 +17,7 @@ func main() {
 	fmt.Println(a2, s2)
 
 	s3 := a2[:2]
-	fmt.println(a2, s3)
+	fmt.Println(a2, s3)
 
 	s4 := s2[:1]
 	fmt.Println(s2, s4)

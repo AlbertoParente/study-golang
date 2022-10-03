@@ -7,7 +7,7 @@ var summ = func(a, b int) int {
 }
 
 func main() {
-	fmt.Fprintln(summ(2, 3))
+	fmt.Println(summ(2, 3))
 	sub := func(a, b int) int {
 		return a - b
 	}

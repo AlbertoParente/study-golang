@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 func typee(i interface{}) string {
 	switch i.(type) {
@@ -18,9 +21,9 @@ func typee(i interface{}) string {
 }
 
 func main() {
-	fmt.Println(type(2, 3))
-    fmt.Println(type(1))
-    fmt.Println(type("Hello"))
-    fmt.Println(type(func() {}))
-    fmt.Println(type(time.Now()))
+	fmt.Println(typee(2.3))
+	fmt.Println(typee(1))
+	fmt.Println(typee("Hello"))
+	fmt.Println(typee(func() {}))
+	fmt.Println(typee(time.Now()))
 }
