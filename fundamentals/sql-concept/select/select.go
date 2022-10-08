@@ -7,6 +7,11 @@ import (
 	_ "github.com/go-sql-drive/mysql"
 )
 
+type user struct {
+	id   int
+	name string
+}
+
 func main() {
 	db, err := sql.Open("mysql", "root:123456@/TestGo")
 	if err != nil {
