@@ -9,6 +9,7 @@ import (
 
 func main() {
 	db, err := sql.Open("mysql", "root:123456@/TestGo")
+
 	if err != nil {
 		panic(err)
 	}

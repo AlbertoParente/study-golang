@@ -16,6 +16,7 @@ func exec(db *sql.DB, sql string) sql.Result {
 
 func main() {
 	db, err := sql.Open("mysql", "root:123456@/TestGo")
+
 	if err != nil {
 		panic(err)
 	}
@@ -29,7 +30,6 @@ func main() {
         name VARCGAR(80),
         PRIMARY KEY (id)
     )`)
-
 }
 
 /*

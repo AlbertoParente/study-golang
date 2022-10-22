@@ -24,19 +24,19 @@ func (p product) toString() string {
 	return fmt.Sprintf("%s - R$ %.2f", p.name, p.price)
 }
 
-func print(x printable) {
+func printt(x printable) {
 	fmt.Println(x.toSring())
 }
 
 func main() {
 	var something printable = person{"Alberto", "Parente"}
 	fmt.Println(something.toSring())
-	print(something)
+	printt(something)
 
 	something = product{"Notbook", 1499.99}
-	fmt.println(something.toSring())
-	print(something)
+	fmt.Println(something.toSring())
+	printt(something)
 
 	p2 := product{"Notbook", 2000.00}
-	print(p2)
+	printt(p2)
 }

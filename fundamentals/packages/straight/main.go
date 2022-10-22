@@ -7,5 +7,5 @@ func main() {
 	p2 := Point{2.0, 4.0}
 
 	fmt.Println(side(p1, p2))
-	fmt.Println(distance(p1, p2))
+	fmt.Println(Distance(p1, p2))
 }

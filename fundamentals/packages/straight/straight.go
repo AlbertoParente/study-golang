@@ -2,12 +2,12 @@ package main
 
 import "math"
 
-type ready struct {
+type Point struct {
 	x float64
 	y float64
 }
 
-func side(a, b, Point) (cx, cy float64) {
+func side(a, b Point) (cx, cy float64) {
 	cx = math.Abs(b.x - a.x)
 	cy = math.Abs(b.y - a.y)
 	return
