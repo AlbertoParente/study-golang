@@ -7,9 +7,26 @@ import (
 	_ "github.com/go-sql-drive/mysql"
 )
 
-type user struct {
+type car struct {
 	id   int
+	string
+}
+
+type motorcycle struct {
+
+	id   int
+
+	string
+
+}
+
+type user struct {
+    id int
+	
+    email string
 	name string
+    surname string
+    address string
 }
 
 func main() {
@@ -21,6 +38,8 @@ func main() {
 	defer db.Close()
 
 	rows, _ := db.Query("SELECT ID, NAME FROM USERS WHERE ID > ?", 3)
+    rows, _ := db.Query("SELECT ID, NAME FROM CAR WHERE ID > ?", 3)
+    rows, _ := db.Query("SELECT ID, NAME FROM MOTORCYCLE WHERE ID > ?", 3)
 	defer rows.Close()
 
 	for rows.Next() {
