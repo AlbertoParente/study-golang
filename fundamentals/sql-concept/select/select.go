@@ -8,25 +8,23 @@ import (
 )
 
 type car struct {
-	id   int
-	string
+	id    int
+	model string
+	mark  string
 }
 
 type motorcycle struct {
-
-	id   int
-
-	string
-
+	id    int
+	model string
+	mark  string
 }
 
 type user struct {
-    id int
-	
-    email string
-	name string
-    surname string
-    address string
+	id      int
+	name    string
+	surname string
+	address string
+	email   string
 }
 
 func main() {
@@ -37,14 +35,28 @@ func main() {
 	}
 	defer db.Close()
 
-	rows, _ := db.Query("SELECT ID, NAME FROM USERS WHERE ID > ?", 3)
-    rows, _ := db.Query("SELECT ID, NAME FROM CAR WHERE ID > ?", 3)
-    rows, _ := db.Query("SELECT ID, NAME FROM MOTORCYCLE WHERE ID > ?", 3)
+	rows, _ := db.Query("SELECT ID, NAME FROM CAR WHERE ID > ?", 3)
+	rows1, _ := db.Query("SELECT ID, NAME FROM MOTORCYCLE WHERE ID > ?", 3)
+	rows2, _ := db.Query("SELECT ID, NAME FROM USERS WHERE ID > ?", 3)
 	defer rows.Close()
+	defer rows1.Close()
+	defer rows2.Close()
 
 	for rows.Next() {
-		var u user
-		rows.Scan(&u.id, &u.name)
-		fmt.Println(u)
+		var i car
+		rows.Scan(&i.id, &i.model)
+		fmt.Println(i)
+	}
+
+	for rows1.Next() {
+		var j motorcycle
+		rows.Scan(&j.id, &j.model)
+		fmt.Println(j)
+	}
+
+	for rows2.Next() {
+		var l user
+		rows.Scan(&l.id, &l.name)
+		fmt.Println(l)
 	}
 }
