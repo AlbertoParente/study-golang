@@ -16,7 +16,7 @@ func speak(person string) <-chan string {
 	return c
 }
 
-func beatween(input1, input2 <-chan string) <-chan string {
+func beatween(input1, input2, input3, input4 <-chan string) <-chan string {
 	c := make(chan string)
 	go func() {
 		for {
@@ -25,6 +25,10 @@ func beatween(input1, input2 <-chan string) <-chan string {
 				c <- s
 			case s := <-input2:
 				c <- s
+			case s := <-input3:
+				c <- s
+			case s := <-input4:
+				c <- s
 			}
 		}
 	}()
@@ -32,7 +36,9 @@ func beatween(input1, input2 <-chan string) <-chan string {
 }
 
 func main() {
-	c := beatween(speak("Alberto"), speak("Juliana"))
+	c := beatween(speak("Alberto Parente"), speak("Juliana Cvalcante"),
+		speak("Julia Parente"), speak("Alberto"))
+	fmt.Println(<-c, <-c)
 	fmt.Println(<-c, <-c)
 	fmt.Println(<-c, <-c)
 	fmt.Println(<-c, <-c)

@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-func routine(c char) {
+func routine(c chan int) {
 	time.Sleep(time.Second)
 	c <- 1
 	fmt.Println("After read!")
