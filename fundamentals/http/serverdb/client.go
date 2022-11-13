@@ -45,3 +45,26 @@ func userPorID(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	fmt.Fprint(w, string(json))
 }
+
+func allUser(w http.ResponseWriter, r *http.Request) {
+	db, err := sql.Open("mysql", "root:123456@/studygo")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer db.Close()
+
+	rows, _ := db.Query("SELECT id, name FROM USERS")
+	defer db.Close()
+
+	var users []User
+	for rows.Next() {
+		var user User
+		rows.Scan(&users.ID, &user.Name)
+		users = append(users)
+	}
+
+	json, _ := json.Marshal(users)
+
+	w.Header().Set("Content-Type", "application/json")
+	fmt.Fprint(w, string(json))
+}
