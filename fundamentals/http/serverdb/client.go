@@ -11,8 +11,10 @@ import (
 )
 
 type User struct {
-	ID   int    `json:"id"`
-	Name string `json:"name"`
+	ID      int    `json:"id"`
+	Name    string `json:"name"`
+	Surname string `json:"surname"`
+	Email   string `json:"email"`
 }
 
 func UserHandler(w http.ResponseWriter, r *http.Request) {
@@ -30,7 +32,7 @@ func UserHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func userPorID(w http.ResponseWriter, r *http.Request) {
+func userPorID(w http.ResponseWriter, r *http.Request, id int) {
 	db, err := sql.Open("mysql", "root:123456@/studygo")
 	if err != nil {
 		log.Fatal(err)
@@ -38,7 +40,8 @@ func userPorID(w http.ResponseWriter, r *http.Request) {
 	defer db.Close()
 
 	var u User
-	db.QueryRow("SELECT id, name FROM USERS WHERE id = ?", id).Scan(&u.ID, &u.Name)
+	db.QueryRow("SELECT id, name, surname, email FROM USERS WHERE id = ?", id).
+		Scan(&u.ID, &u.Name, &u.Surname, &u.Email)
 
 	json, _ := json.Marshal(u)
 
@@ -59,7 +62,7 @@ func allUser(w http.ResponseWriter, r *http.Request) {
 	var users []User
 	for rows.Next() {
 		var user User
-		rows.Scan(&users.ID, &user.Name)
+		rows.Scan(&user.ID, &user.Name, &user.Surname, &user.Email)
 		users = append(users)
 	}
 
