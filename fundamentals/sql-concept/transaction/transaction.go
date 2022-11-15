@@ -20,6 +20,10 @@ func main() {
 
 	stmt.Exec(2000, "Alberto")
 	stmt.Exec(2001, "Juliana")
+	stmt.Exec(2002, "Graziella")
+	stmt.Exec(2003, "Gabriella")
+	stmt.Exec(2004, "Vitoria")
+	stmt.Exec(2005, "Eduarda")
 	_, err = stmt.Exec(1, "Julia")
 
 	if err != nil {

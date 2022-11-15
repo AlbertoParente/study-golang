@@ -15,12 +15,12 @@ func main() {
 	defer db.Close()
 
 	// UPDATE
-	stmt, _ := db.Prepare("UPDATE USERS SET NAME = ? WHERE ID = ?")
+	stmt, _ := db.Prepare("UPDATE USERS SET name = ? WHERE id = ?")
 	stmt.Exec("Uóxiton Istive", 1)
 	stmt.Exec("Sheristone Uasleska", 2)
 
 	// DELETE
-	stmt2, _ := db.Prepare("UPDATE USERS SET NAME = ? WHERE ID = ?")
+	stmt2, _ := db.Prepare("UPDATE USERS SET name = ? WHERE id = ?")
 	stmt2.Exec(3)
 	stmt2.Exec(2)
 	stmt2.Exec(4)

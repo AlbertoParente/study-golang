@@ -35,9 +35,9 @@ func main() {
 	}
 	defer db.Close()
 
-	rows, _ := db.Query("SELECT ID, NAME FROM CAR WHERE ID > ?", 3)
-	rows1, _ := db.Query("SELECT ID, NAME FROM MOTORCYCLE WHERE ID > ?", 3)
-	rows2, _ := db.Query("SELECT ID, NAME FROM USERS WHERE ID > ?", 3)
+	rows, _ := db.Query("SELECT id, model, mark FROM CAR WHERE ID > ?", 3)
+	rows1, _ := db.Query("SELECT id, model, mark FROM MOTORCYCLE WHERE ID > ?", 3)
+	rows2, _ := db.Query("SELECT id, name, surname, address, email FROM USERS WHERE ID > ?", 3)
 	defer rows.Close()
 	defer rows1.Close()
 	defer rows2.Close()
